@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'frontpage/frontpage.dart';
-import 'profilepage/profile_page.dart';
+import 'modules/navigation/bottom_navigation.dart';
+import 'modules/navigation/drawer_navigation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -32,52 +33,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
-  static final List<Widget> _widgetOptions = <Widget>[
-    FrontPage(),
-    ProfilePage(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex=index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {
-               ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('This is a searchBar')));
-            },
-            icon: const Icon (Icons.search)
-            )
-        ],
         centerTitle:false,
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex)
-        ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label:'Home',
-          ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle_outlined),
-          label:'Profile',
-          ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Theme.of(context).colorScheme.primary,
-      onTap: _onItemTapped,
-      ),
-    );
+      body: const BottomNavigation(),
+      endDrawer: const DrawerNavigation(),
+      );
   }
 }
