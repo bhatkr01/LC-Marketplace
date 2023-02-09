@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import '../../../main.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/api/accounts/accounts_api.dart';
 
-class Login extends StatefulWidget {
+class Login extends ConsumerStatefulWidget {
   const Login({super.key});
                               
   @override
-  State<Login> createState() => _LoginState();
+  ConsumerState<Login> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends ConsumerState<Login> {
 
   bool passwordVisible = true;
   final _formKey = GlobalKey<FormState>();
@@ -127,7 +128,7 @@ class _LoginState extends State<Login> {
         ));
   }
 
-  Widget _submitField() {
+  Widget _submitField(){
     return ElevatedButton(
       onPressed: ()async {
         // Validate returns true if the form is valid, or false otherwise.
@@ -138,14 +139,48 @@ class _LoginState extends State<Login> {
           loginData['email']=loginController['email']!.text;
           loginData['password']=loginController['password']!.text;
 
-          // final response=  await fetchT(loginData);
-          final response=  await login(loginData);
-          print(response);
+          try{
+          await ref.read(loginProvider.notifier).login(loginData).then(
+            (_){
+
+            ScaffoldMessenger.of(context).showSnackBar(
+           const SnackBar(
+            content: Text("Login Success"),
+            duration: Duration(milliseconds:50),
+            ),
+            );
+            }
+          );
+
+          }catch(e){
+            ScaffoldMessenger.of(context).showSnackBar(
+           const SnackBar(
+            content: Text("Login Error"),
+            duration: Duration(milliseconds:50),
+            )
+            );
+          }
+
+          // print(response);
+    // response.when(
+    //   loading: () {
+    //     print("donkey");
+    //    const CircularProgressIndicator();
+    //   },
+    //   // error: (err, stack) => Text('Error: $err'),
+    //   error: (err, stack) {
+    //     return
+    //       ScaffoldMessenger.of(context).showSnackBar(
+    //        const SnackBar(content: Text("hi")),
+    //       );
+    //   },
+    //   data: (data){
+    //     print("hi");
+    //       print(data);
+    //   }
+    // );
           // print(response['access']);
 
-          ScaffoldMessenger.of(context).showSnackBar(
-           const SnackBar(content: Text("hi")),
-          );
         }
       },
       child: const Text('Submit'),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'modules/navigation/bottom_navigation.dart';
 import 'modules/navigation/drawer_navigation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+const storage=FlutterSecureStorage();
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
