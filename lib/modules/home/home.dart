@@ -15,6 +15,7 @@ class Home extends ConsumerWidget{
       loading: () => const CircularProgressIndicator(),
       error: (err, stack) => Text('Error: $err'),
       data: (products){
+        print(products);
                           return CustomScrollView(
                       primary: false,
   slivers: <Widget>[
