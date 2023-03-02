@@ -4,6 +4,7 @@ import 'product_card.dart';
 import '../../data/api/product/product_api.dart';
 
 class Home extends ConsumerWidget{
+  const Home({super.key});
   @override
   Widget build(BuildContext context, ref){
     
@@ -15,7 +16,6 @@ class Home extends ConsumerWidget{
       loading: () => const CircularProgressIndicator(),
       error: (err, stack) => Text('Error: $err'),
       data: (products){
-        print(products);
                           return CustomScrollView(
                       primary: false,
   slivers: <Widget>[

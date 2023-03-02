@@ -13,8 +13,8 @@ class BottomNavigation extends StatefulWidget {
 class _BottomNavigationState extends State<BottomNavigation> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
-    Home(),
-    Profile(),
+    const Home(),
+    const Profile(),
   ];
 
   void _onItemTapped(int index) {

@@ -14,7 +14,7 @@ const Profile({Key? key}): super(key:key);
 }
 
 class ProfileState extends ConsumerState<Profile> {
-String token='';
+String token ='';
 
   @override
   void initState() {
@@ -27,7 +27,7 @@ String token='';
     final products=ref.watch(productsProvider);
 
     getToken("access").then((value) => setState((){
-      token=value!;
+      token=value?? '';
     }
 
     ));
@@ -40,28 +40,32 @@ String token='';
                           return Column(
                             children: [
                               _yourProfile(),
-                              CustomScrollView(
-                                shrinkWrap: true,
-                      primary: false,
-  slivers: <Widget>[
-    SliverPadding(
-      padding: const EdgeInsets.all(20),
-      sliver: SliverGrid.count(
-        crossAxisSpacing: 0,
-        mainAxisSpacing: 0,
-        childAspectRatio:MediaQuery.of(context).size.width<601? 0.6: 0.8,
-        crossAxisCount: MediaQuery.of(context).size.width<601? 2: 3,
-        children: 
-          _filteredProducts(products, decodedToken['user_id'])
-      // products.map((product) {
-      //     if (product.productAuthor==userId){
-      //       return ProductCard(product:product);
-      //     }
-      // });
-      ),
-    ),
-  ],
-                    ),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: CustomScrollView(
+                                    shrinkWrap: true,
+                                                      primary: false,
+                                  slivers: <Widget>[
+                                    SliverPadding(
+                                      padding: const EdgeInsets.all(20),
+                                      sliver: SliverGrid.count(
+                                        crossAxisSpacing: 0,
+                                        mainAxisSpacing: 0,
+                                        childAspectRatio:MediaQuery.of(context).size.width<601? 0.6: 0.8,
+                                        crossAxisCount: MediaQuery.of(context).size.width<601? 2: 3,
+                                        children: 
+                                          _filteredProducts(products, decodedToken['user_id'])
+                                      // products.map((product) {
+                                      //     if (product.productAuthor==userId){
+                                      //       return ProductCard(product:product);
+                                      //     }
+                                      // });
+                                      ),
+                                    ),
+                                  ],
+                                                    ),
+                                ),
+                              ),
                             ],
                           );
       }

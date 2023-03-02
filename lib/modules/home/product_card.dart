@@ -7,7 +7,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         height:400,
         width:220,
         child: Card(
@@ -24,7 +24,7 @@ class ProductCard extends StatelessWidget {
             // mainAxisSize: MainAxisSize.max,
             children: <Widget>[
 
-              Container(
+              SizedBox(
                 height:140,
                 width:180,
                 child: Image.network(product.productPicture,
