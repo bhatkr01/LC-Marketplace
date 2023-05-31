@@ -50,7 +50,7 @@ Widget _loginOnly(context) {
           onTap: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => AddProducts()),
+              MaterialPageRoute(builder: (context) => const AddProducts()),
             );
           },
         ),
@@ -86,7 +86,7 @@ Widget _logoutOnly(context) {
           onTap: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => AddProducts()),
+              MaterialPageRoute(builder: (context) => const AddProducts()),
             );
           },
         ),

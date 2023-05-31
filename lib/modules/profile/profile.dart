@@ -129,7 +129,7 @@ Widget _yourProfile(List products, int donationsCount, int userID) {
 
                 return Center(
                   child: Text(
-                    '${data!.firstName} ${data!.lastName}',
+                    '${data!.firstName} ${data.lastName}',
                     style: const TextStyle(fontSize: 18.0),
                   ),
                 );

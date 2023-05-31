@@ -13,7 +13,7 @@ class SignUp extends ConsumerStatefulWidget {
 class _SignUpState extends ConsumerState<SignUp> {
   bool passwordVisible = true;
   bool passwordVisible1 = true;
-  var matchPassword='';
+  var matchPassword = '';
   final _formKey = GlobalKey<FormState>();
   final Map<String, TextEditingController> signUpController = {
     'email': TextEditingController(),
@@ -39,29 +39,25 @@ class _SignUpState extends ConsumerState<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text('Create New Account'),
         ),
-        body:
-         Form(
-            key: _formKey,
-            child: ListView(
- padding: const EdgeInsets.all(20.0),
-              children: <Widget>
-                [
-                  _emailField(),
-                  _firstNameField(),
-                  _lastNameField(),
-                  _classStatusField(),
-                  _passwordField(),
-                  _password2Field(),
-                  _submitField(),
-                ],
-              ),
-            )
-            );
+        body: Form(
+          key: _formKey,
+          child: ListView(
+            padding: const EdgeInsets.all(20.0),
+            children: <Widget>[
+              _emailField(),
+              _firstNameField(),
+              _lastNameField(),
+              _classStatusField(),
+              _passwordField(),
+              _password2Field(),
+              _submitField(),
+            ],
+          ),
+        ));
   }
 
   Widget _emailField() {
@@ -82,13 +78,10 @@ class _SignUpState extends ConsumerState<SignUp> {
             padding: EdgeInsets.all(8.0),
             child: Icon(Icons.email),
           ),
-
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
-                            borderSide: BorderSide(color: Colors.blue)),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 20),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+              borderSide: BorderSide(color: Colors.blue)),
+          contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
           labelText: 'Enter your email',
         ),
       ),
@@ -106,18 +99,15 @@ class _SignUpState extends ConsumerState<SignUp> {
             }
             return null;
           },
-        decoration: const InputDecoration(
-          prefixIcon: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.person),
-          ),
-
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
-                            borderSide: BorderSide(color: Colors.blue)),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 20),
+          decoration: const InputDecoration(
+            prefixIcon: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(Icons.person),
+            ),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                borderSide: BorderSide(color: Colors.blue)),
+            contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
             labelText: 'Enter your first name',
           ),
         ));
@@ -134,18 +124,15 @@ class _SignUpState extends ConsumerState<SignUp> {
             }
             return null;
           },
-        decoration: const InputDecoration(
-          prefixIcon: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.person),
-          ),
-
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
-                            borderSide: BorderSide(color: Colors.blue)),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 20),
+          decoration: const InputDecoration(
+            prefixIcon: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(Icons.person),
+            ),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                borderSide: BorderSide(color: Colors.blue)),
+            contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
             labelText: 'Enter your last name',
           ),
         ));
@@ -162,24 +149,19 @@ class _SignUpState extends ConsumerState<SignUp> {
             }
             return null;
           },
-        decoration: const InputDecoration(
-          prefixIcon: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.group),
-          ),
-
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
-                            borderSide: BorderSide(color: Colors.blue)),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 20),
+          decoration: const InputDecoration(
+            prefixIcon: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(Icons.group),
+            ),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                borderSide: BorderSide(color: Colors.blue)),
+            contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
             labelText: 'Select your class status',
           ),
         ));
   }
-
-
 
   Widget _passwordField() {
     return Padding(
@@ -187,35 +169,30 @@ class _SignUpState extends ConsumerState<SignUp> {
         child: TextFormField(
           controller: signUpController['password'],
           validator: (value) {
-            matchPassword=value?? '';
+            matchPassword = value ?? '';
             if (value == null || value.isEmpty) {
               return 'Please enter your password';
             }
             return null;
           },
           obscureText: !passwordVisible,
-        decoration: InputDecoration(
-          prefixIcon: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.lock),
-          ),
-
+          decoration: InputDecoration(
+            prefixIcon: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(Icons.lock),
+            ),
             suffixIcon: IconButton(
-              onPressed: (){
-                  setState(() => passwordVisible = !passwordVisible);
+              onPressed: () {
+                setState(() => passwordVisible = !passwordVisible);
               },
-                  
               icon: Icon(
                   passwordVisible ? Icons.visibility_off : Icons.visibility),
             ),
-
-
-                        border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
-                            borderSide: BorderSide(color: Colors.blue)),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 20),
+            border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                borderSide: BorderSide(color: Colors.blue)),
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
             labelText: 'Enter your password',
           ),
         ));
@@ -229,39 +206,30 @@ class _SignUpState extends ConsumerState<SignUp> {
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Please enter your password';
-            }
-            else if (value !=matchPassword ){
+            } else if (value != matchPassword) {
               return 'Your passwords do not match';
-
-            }
-            else{
-            return null;
-
+            } else {
+              return null;
             }
           },
           obscureText: !passwordVisible,
-        decoration: InputDecoration(
-          prefixIcon: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.lock),
-          ),
-
+          decoration: InputDecoration(
+            prefixIcon: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(Icons.lock),
+            ),
             suffixIcon: IconButton(
-              onPressed: (){
-                  setState(() => passwordVisible = !passwordVisible);
+              onPressed: () {
+                setState(() => passwordVisible = !passwordVisible);
               },
-                  
               icon: Icon(
                   passwordVisible ? Icons.visibility_off : Icons.visibility),
             ),
-
-
-                        border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
-                            borderSide: BorderSide(color: Colors.blue)),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 20),
+            border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                borderSide: BorderSide(color: Colors.blue)),
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
             labelText: 'Re-enter your password',
           ),
         ));
@@ -291,8 +259,9 @@ class _SignUpState extends ConsumerState<SignUp> {
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.all(16.0),
-                textStyle: const TextStyle(fontSize: 20,),
-
+                textStyle: const TextStyle(
+                  fontSize: 20,
+                ),
               ),
               onPressed: () async {
                 // Validate returns true if the form is valid, or false otherwise.
@@ -301,9 +270,11 @@ class _SignUpState extends ConsumerState<SignUp> {
                   // you'd often call a server or save the information in a database.
                   var signUpData = <String, dynamic>{};
                   signUpData['email'] = signUpController['email']!.text;
-                  signUpData['first_name'] = signUpController['first_name']!.text;
+                  signUpData['first_name'] =
+                      signUpController['first_name']!.text;
                   signUpData['last_name'] = signUpController['last_name']!.text;
-                  signUpData['class_status'] = signUpController['class_status']!.text;
+                  signUpData['class_status'] =
+                      signUpController['class_status']!.text;
                   signUpData['password'] = signUpController['password']!.text;
                   // signUpData['password2'] = signUpController['password2']!.text;
 
@@ -329,8 +300,8 @@ class _SignUpState extends ConsumerState<SignUp> {
                 }
               },
               child: const Align(
-                alignment: Alignment.center,
-                child:  Text('Submit',textAlign: TextAlign.center)),
+                  alignment: Alignment.center,
+                  child: Text('Submit', textAlign: TextAlign.center)),
             ),
           ],
         ),
@@ -338,4 +309,3 @@ class _SignUpState extends ConsumerState<SignUp> {
     );
   }
 }
-
